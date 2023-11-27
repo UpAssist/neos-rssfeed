@@ -57,7 +57,6 @@ prototype(UpAssist.Neos.RSSFeed:Component.Template.RssFeed) < prototype(Neos.Fus
             @position = '20'
             tagName = 'channel'
             omitClosingTag = TRUE
-            attributes.class=${'foo-' + props.numberOfCharacters}
           }
 
           // Content of the channel tag. To be defined by the integrator.
