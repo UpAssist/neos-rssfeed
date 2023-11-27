@@ -1,0 +1,3 @@
+prototype(UpAssist.Neos.RSSFeed:Helper.CDataHelper) < prototype(Neos.Fusion:Component) {
+    renderer = ${'<![CDATA[' + props.content + ']]>'}
+}

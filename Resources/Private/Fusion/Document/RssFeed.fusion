@@ -1,0 +1,14 @@
+prototype(UpAssist.Neos.RSSFeed:Document.RssFeed) < prototype(Neos.Fusion:Component) {
+
+  renderer = UpAssist.Neos.RSSFeed:Component.Template.RssFeed {
+    # Props
+    author = ${q(node).property('feedAuthor')}
+    description = ${q(node).property('feedDescription')}
+    numberOfItems = ${q(node).property('feedNumberOfItems')}
+    numberOfCharacters = ${q(node).property('feedNumberOfCharacters')}
+    indexPage = ${q(node).property('feedIndexPage')}
+    itemNodeType = ${q(node).property('feedItemNodeType')}
+    itemContentNodeType = ${q(node).property('feedItemContentNodeType')}
+  }
+
+}

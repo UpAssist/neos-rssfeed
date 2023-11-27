@@ -1,0 +1,84 @@
+prototype(UpAssist.Neos.RSSFeed:Component.Template.RssFeed) < prototype(Neos.Fusion:Component) {
+
+  @propTypes {
+    author = ${PropTypes.string}
+    numberOfItems = ${PropTypes.integer}
+    numberOfCharacters = ${PropTypes.integer}
+    indexPage = ${PropTypes.instanceOf('Neos.Neos:Document')}
+    itemNodeType = ${PropTypes.string}
+    itemContentNodeType = ${PropTypes.any}
+  }
+
+  author = ''
+  numberOfItems = 10
+  numberOfCharacters = 155
+  indexPage = null
+  itemNodeType = ''
+  itemContentNodeType = ${[]}
+
+  # Rendering
+  renderer = Neos.Fusion:Case {
+      neos {
+        condition = ${node.context.inBackend}
+        renderer = Neos.Neos:Page {
+          body = afx`
+            <main>
+              <p>RSS Feed will load in the frontend only</p>
+            </main>
+          `
+        }
+      }
+      default {
+        condition = true
+        renderer = Neos.Fusion:Http.Message {
+          doctype = '<?xml version="1.0" encoding="UTF-8"?>'
+          doctype.@position = 'start 100'
+
+          rssTag = Neos.Fusion:Tag {
+            @position = 'start'
+            tagName = 'rss'
+            omitClosingTag = TRUE
+
+            attributes {
+              version = '2.0'
+              xmlns:dc = 'http://purl.org/dc/elements/1.1/'
+              xmlns:atom = 'http://www.w3.org/2005/Atom'
+            }
+          }
+
+          httpResponseHead {
+            headers {
+              Content-Type = 'text/xml; charset=UTF-8'
+            }
+          }
+
+          // The opening channel tag for the feed. This is done to avoid deep nesting of TypoScript paths for integrators.
+          channelTag = Neos.Fusion:Tag {
+            @position = '20'
+            tagName = 'channel'
+            omitClosingTag = TRUE
+            attributes.class=${'foo-' + props.numberOfCharacters}
+          }
+
+          // Content of the channel tag. To be defined by the integrator.
+          channel = UpAssist.Neos.RSSFeed:Component.Molecule.Channel {
+            @position = 'after channelTag'
+            author = ${props.author}
+            description = ${props.description}
+            numberOfItems = ${props.numberOfItems}
+            numberOfCharacters = ${props.numberOfCharacters}
+            indexPage = ${props.indexPage}
+            itemNodeType = ${props.itemNodeType}
+            itemContentNodeType = ${props.itemContentNodeType}
+          }
+
+          closingChannelTag = '</channel>'
+          closingChannelTag.@position = 'end 100'
+
+          closingRssTag = '</rss>'
+          closingRssTag.@position = 'end 200'
+        }
+      }
+    }
+
+}

@@ -1,0 +1,10 @@
+Neos:
+  Neos:
+    fusion:
+      autoInclude:
+        UpAssist.Neos.RSSFeed: true
+    userInterface:
+      translation:
+        autoInclude:
+          UpAssist.Neos.RSSFeed:
+            - 'NodeTypes/*'

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file original="" product-name="UpAssist.Neos.RSSFeed" source-language="en" datatype="plaintext">
+    <body>
+      <trans-unit id="ui.label">
+        <source>RSS Feed</source>
+      </trans-unit>
+      <trans-unit id="groups.rss">
+        <source>Rss</source>
+      </trans-unit>
+      <trans-unit id="properties.feedAuthor">
+        <source>Author</source>
+      </trans-unit>
+      <trans-unit id="properties.feedDescription">
+        <source>Description</source>
+      </trans-unit>
+      <trans-unit id="properties.feedNumberOfItems">
+        <source>Number of items</source>
+      </trans-unit>
+      <trans-unit id="properties.feedNumberOfCharacters">
+        <source>Number of characters</source>
+      </trans-unit>
+      <trans-unit id="properties.feedIndexPage">
+        <source>Index Page</source>
+      </trans-unit>
+      <trans-unit id="properties.feedIndexPage.ui.help.message">
+        <source>If not set the home page will be used as a starting point to select the items.</source>
+      </trans-unit>
+      <trans-unit id="properties.feedItemNodeType">
+        <source>Item NodeType</source>
+      </trans-unit>
+      <trans-unit id="properties.feedItemNodeType.ui.help.message">
+        <source>NodeType to be used for the feed items</source>
+      </trans-unit>
+      <trans-unit id="properties.feedItemContentNodeType">
+        <source>Content NodeType</source>
+      </trans-unit>
+      <trans-unit id="properties.feedItemContentNodeType.ui.help.message">
+        <source>NodeType to be used for the content of an item</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

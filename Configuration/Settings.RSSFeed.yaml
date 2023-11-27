@@ -1,0 +1,17 @@
+UpAssist:
+  Neos:
+    RSSFeed:
+      # Set this where you want the editor to be able to select the document nodes from.
+      # You can use a mixin, all types containing the mixin will then be available.
+      allowedDocumentTypes:
+        - 'Neos.Neos:Document'
+      # Set this where you want the editor to be able to select the content nodes from (for use in the body).
+      # You can use a mixin, all types containing the mixin will then be available.
+      allowedContentTypes:
+        - 'Neos.Neos:Mixin.TextMixin'
+      # The property used to fetch text from
+      contentPropertyName: 'text'
+      # The name of the main content collection (where we look for text elements to show)
+      mainContentCollection: 'main'
+      # When trimming text, append this
+      textAppendix: '...'

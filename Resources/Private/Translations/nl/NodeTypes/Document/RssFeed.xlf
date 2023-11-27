@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file original="" product-name="UpAssist.Neos.RSSFeed" source-language="en" target-language="nl" datatype="plaintext">
+    <body>
+      <trans-unit id="ui.label">
+        <source>RSS Feed</source>
+        <target>RSS-feed</target>
+      </trans-unit>
+      <trans-unit id="groups.rss">
+        <source>Rss</source>
+        <target>RSS</target>
+      </trans-unit>
+      <trans-unit id="properties.feedAuthor">
+        <source>Author</source>
+        <target>Auteur</target>
+      </trans-unit>
+      <trans-unit id="properties.feedDescription">
+        <source>Description</source>
+        <target>Bescrhijving</target>
+      </trans-unit>
+      <trans-unit id="properties.feedNumberOfItems">
+        <source>Number of items</source>
+        <target>Aantal items</target>
+      </trans-unit>
+      <trans-unit id="properties.feedNumberOfCharacters">
+        <source>Number of characters</source>
+        <target>Aantal characters</target>
+      </trans-unit>
+      <trans-unit id="properties.feedIndexPage">
+        <source>Index Page</source>
+        <target>Indexpagina</target>
+      </trans-unit>
+      <trans-unit id="properties.feedIndexPage.ui.help.message">
+        <source>If not set the home page will be used as a starting point to select the items.</source>
+        <target>Als dit niet is ingesteld, wordt de startpagina gebruikt als startpunt om de items te selecteren.</target>
+      </trans-unit>
+      <trans-unit id="properties.feedItemNodeType">
+        <source>Item NodeType</source>
+        <target>Item-type</target>
+      </trans-unit>
+      <trans-unit id="properties.feedItemContentNodeType">
+        <source>Content NodeType</source>
+        <target>Inhoudstype</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

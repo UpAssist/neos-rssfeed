@@ -1,0 +1,26 @@
+prototype(UpAssist.Neos.RSSFeed:Component.Molecule.Item) < prototype(Neos.Fusion:Component) {
+  @propTypes {
+    node = ${PropTypes.instanceOf('Neos.Neos:Document')}
+    numberOfCharacters = ${PropTypes.integer}
+  }
+
+  @private {
+    contentPropertyName = ${Configuration.setting('UpAssist.Neos.RSSFeed.contentPropertyName')}
+    mainContentCollection = ${Configuration.setting('UpAssist.Neos.RSSFeed.mainContentCollection')}
+    textAppendix = ${Configuration.setting('UpAssist.Neos.RSSFeed.textAppendix')}
+  }
+    renderer = afx`
+        <item>
+            <UpAssist.Neos.RSSFeed:Helper.CDataHelper content={node.properties.title}
+                                                      @process.wrap={'<title>' + value + '</title>'}/>
+            <Neos.Neos:NodeUri node={node} absolute={'true'} @process.wrap={'<link>' + value + '</link>'}/>
+            <Neos.Neos:NodeUri node={node} absolute={'true'} @process.wrap={'<guid>' + value + '</guid>'}/>
+            <pubDate>{Date.format(node.lastPublicationDateTime, 'D, d M Y H:i:s O')}</pubDate>
+            <UpAssist.Neos.RSSFeed:Helper.CDataHelper content={props.author}
+                                                      @process.wrap={'<dc:creator>' + value + '</dc:creator>'}/>
+            <UpAssist.Neos.RSSFeed:Helper.CDataHelper @process.wrap={'<description>' + value + '</description>'}>
+                {String.crop(String.stripTags(q(node).find(private.mainContentCollection).find(Array.join(itemContentNodeType)).first().property(private.contentPropertyName)), props.numberOfCharacters, private.textAppendix)}
+            </UpAssist.Neos.RSSFeed:Helper.CDataHelper>
+        </item>
+    `
+}
