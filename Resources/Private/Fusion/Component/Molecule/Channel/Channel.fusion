@@ -1,56 +1,58 @@
 prototype(UpAssist.Neos.RSSFeed:Component.Molecule.Channel) < prototype(Neos.Fusion:Component) {
 
-  @propTypes {
-    title = ${PropTypes.string}
-    description = ${PropTypes.string}
-    numberOfItems = ${PropTypes.integer}
-    numberOfCharacters = ${PropTypes.integer}
-    indexPage = ${PropTypes.instanceOf('Neos.Neos:Document')}
-    itemNodeType = ${PropTypes.string}
-    itemContentNodeType = ${PropTypes.any}
-  }
+    @propTypes {
+        title = ${PropTypes.string}
+        description = ${PropTypes.string}
+        numberOfItems = ${PropTypes.integer}
+        numberOfCharacters = ${PropTypes.integer}
+        indexPage = ${PropTypes.instanceOf('Neos.Neos:Document')}
+        itemNodeType = ${PropTypes.string}
+        itemContentNodeType = ${PropTypes.any}
+    }
 
-  author = ''
-  description = ''
-  numberOfItems = 10
-  numberOfCharacters = 155
-  indexPage = null
-  itemNodeType = ${Configuration.setting('UpAssist.Neos.RSSFeed.allowedDocumentTypes')[0]}
-  itemContentNodeType = ${Configuration.setting('UpAssist.Neos.RSSFeed.allowedContentTypes')}
-  title = ${q(documentNode).property('titleOverride') ? q(documentNode).property('titleOverride') : q(documentNode).property('title')}
-  siteUri = Neos.Neos:NodeUri {
-    node = ${site}
-    absolute = true
-    @process.wrap = ${'<link>' + value + '</link>'}
-  }
-  language = ${Array.first(node.context.dimensions.language)}
-  feedUri = Neos.Neos:NodeUri {
-    node = ${documentNode}
-    absolute = true
-  }
-  itemContentNodeTypes = Neos.Fusion:Map {
-    items = ${props.itemContentNodeType}
-    itemRenderer = ${'[instanceof ' + item + ']'}
-  }
-  items = ${q(props.indexPage ? props.indexPage : site).find('[instanceof ' + props.itemNodeType + ']').sort('publicationDate', 'DESC').slice(0, props.numberOfItems)}
+    author = ''
+    description = ''
+    numberOfItems = 10
+    numberOfCharacters = 155
+    indexPage = null
+    itemNodeType = ${Configuration.setting('UpAssist.Neos.RSSFeed.allowedDocumentTypes')[0]}
+    itemContentNodeType = ${Configuration.setting('UpAssist.Neos.RSSFeed.allowedContentTypes')}
+    title = ${q(documentNode).property('titleOverride') ? q(documentNode).property('titleOverride') : q(documentNode).property('title')}
+    image = ${Configuration.setting('UpAssist.Neos.RSSFeed.imagePropertyName') ? q(documentNode).property(Configuration.setting('UpAssist.Neos.RSSFeed.imagePropertyName')) : null}
+    siteUri = Neos.Neos:NodeUri {
+        node = ${site}
+        absolute = true
+        @process.wrap = ${'<link>' + value + '</link>'}
+    }
+    language = ${Array.first(node.context.dimensions.language)}
+    feedUri = Neos.Neos:NodeUri {
+        node = ${documentNode}
+        absolute = true
+    }
+    itemContentNodeTypes = Neos.Fusion:Map {
+        items = ${props.itemContentNodeType}
+        itemRenderer = ${'[instanceof ' + item + ']'}
+    }
+    items = ${q(props.indexPage ? props.indexPage : site).find('[instanceof ' + props.itemNodeType + ']').sort('publicationDate', 'DESC').slice(0, props.numberOfItems)}
 
-  renderer = afx`
-    <title>{props.title}</title>
-    {props.siteUri}
-    <description>{props.description}</description>
-    <language>{props.language}</language>
-    <generator>Neos</generator>
-    <Neos.Fusion:Tag tagName={'atom:link'}
-                     attributes.href={props.feedUri}
-                     attributes.rel="self"
-                     attributes.type="application/rss+xml"></Neos.Fusion:Tag>
-    <Neos.Fusion:Loop items={props.items}
-                      @context.wrapperStart='<![CDATA['
-                      @context.wrapperEnd=']]>'
-                      @context.itemContentNodeType={props.itemContentNodeTypes}>
-      <UpAssist.Neos.RSSFeed:Component.Molecule.Item @context.node={item} author={props.author} numberOfCharacters={props.numberOfCharacters}/>
-    </Neos.Fusion:Loop>
-  `
+    renderer = afx`
+        <title>{props.title}</title>
+        {props.siteUri}
+        <description>{props.description}</description>
+        <language>{props.language}</language>
+        <generator>Neos</generator>
+        <Neos.Fusion:Tag tagName={'atom:link'}
+                         attributes.href={props.feedUri}
+                         attributes.rel="self"
+                         attributes.type="application/rss+xml"></Neos.Fusion:Tag>
+        <Neos.Fusion:Loop items={props.items}
+                          @context.wrapperStart='<![CDATA['
+                          @context.wrapperEnd=']]>'
+                          @context.itemContentNodeType={props.itemContentNodeTypes}>
+            <UpAssist.Neos.RSSFeed:Component.Molecule.Item @context.node={item} author={props.author}
+                                                           numberOfCharacters={props.numberOfCharacters}/>
+        </Neos.Fusion:Loop>
+    `
 
 }
 

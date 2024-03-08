@@ -11,6 +11,8 @@ UpAssist:
         - 'Neos.Neos:Mixin.TextMixin'
       # The property used to fetch text from
       contentPropertyName: 'text'
+      # The property used to fetch images from
+      imagePropertyName: 'image'
       # The name of the main content collection (where we look for text elements to show)
       mainContentCollection: 'main'
       # When trimming text, append this

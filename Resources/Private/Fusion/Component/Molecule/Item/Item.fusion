@@ -1,14 +1,16 @@
 prototype(UpAssist.Neos.RSSFeed:Component.Molecule.Item) < prototype(Neos.Fusion:Component) {
-  @propTypes {
-    node = ${PropTypes.instanceOf('Neos.Neos:Document')}
-    numberOfCharacters = ${PropTypes.integer}
-  }
+    @propTypes {
+        node = ${PropTypes.instanceOf('Neos.Neos:Document')}
+        numberOfCharacters = ${PropTypes.integer}
+        image = ${PropTypes.any}
+    }
 
-  @private {
-    contentPropertyName = ${Configuration.setting('UpAssist.Neos.RSSFeed.contentPropertyName')}
-    mainContentCollection = ${Configuration.setting('UpAssist.Neos.RSSFeed.mainContentCollection')}
-    textAppendix = ${Configuration.setting('UpAssist.Neos.RSSFeed.textAppendix')}
-  }
+    @private {
+        contentPropertyName = ${Configuration.setting('UpAssist.Neos.RSSFeed.contentPropertyName')}
+        imagePropertyName = ${Configuration.setting('UpAssist.Neos.RSSFeed.imagePropertyName')}
+        mainContentCollection = ${Configuration.setting('UpAssist.Neos.RSSFeed.mainContentCollection')}
+        textAppendix = ${Configuration.setting('UpAssist.Neos.RSSFeed.textAppendix')}
+    }
     renderer = afx`
         <item>
             <UpAssist.Neos.RSSFeed:Helper.CDataHelper content={node.properties.title}
@@ -21,6 +23,7 @@ prototype(UpAssist.Neos.RSSFeed:Component.Molecule.Item) < prototype(Neos.Fusion
             <UpAssist.Neos.RSSFeed:Helper.CDataHelper @process.wrap={'<description>' + value + '</description>'}>
                 {String.crop(String.stripTags(q(node).find(private.mainContentCollection).find(Array.join(itemContentNodeType)).first().property(private.contentPropertyName)), props.numberOfCharacters, private.textAppendix)}
             </UpAssist.Neos.RSSFeed:Helper.CDataHelper>
+            <UpAssist.Neos.RSSFeed:Component.Molecule.Enclosure image={q(node).property(private.imagePropertyName)} />
         </item>
     `
 }
