@@ -50,7 +50,11 @@ prototype(UpAssist.Neos.RSSFeed:Component.Molecule.Channel) < prototype(Neos.Fus
                           @context.wrapperEnd=']]>'
                           @context.itemContentNodeType={props.itemContentNodeTypes}>
             <UpAssist.Neos.RSSFeed:Component.Molecule.Item @context.node={item} author={props.author}
-                                                           numberOfCharacters={props.numberOfCharacters}/>
+                                                           numberOfCharacters={props.numberOfCharacters}
+                                                           @if={!Configuration.setting('UpAssist.Neos.RSSFeed.useLegacyItemRenderer')} />
+            <UpAssist.Neos.RSSFeed:Component.Molecule.Item.Legacy @context.node={item} author={props.author}
+                                                           numberOfCharacters={props.numberOfCharacters}
+                                                           @if={Configuration.setting('UpAssist.Neos.RSSFeed.useLegacyItemRenderer')} />
         </Neos.Fusion:Loop>
     `
 

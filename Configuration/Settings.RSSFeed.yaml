@@ -1,6 +1,8 @@
 UpAssist:
   Neos:
     RSSFeed:
+      # For older Neos versions, set to false
+      useLegacyItemRenderer: false
       # Set this where you want the editor to be able to select the document nodes from.
       # You can use a mixin, all types containing the mixin will then be available.
       allowedDocumentTypes:

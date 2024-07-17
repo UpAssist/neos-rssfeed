@@ -1,0 +1,32 @@
+prototype(UpAssist.Neos.RSSFeed:Component.Molecule.Item.Legacy) < prototype(Neos.Fusion:Component) {
+    @propTypes {
+        node = ${PropTypes.instanceOf('Neos.Neos:Document')}
+        numberOfCharacters = ${PropTypes.integer}
+        image = ${PropTypes.any}
+    }
+
+    renderer = Neos.Fusion:Component {
+        @apply.props = ${props}
+        contentPropertyName = ${Configuration.setting('UpAssist.Neos.RSSFeed.contentPropertyName')}
+        imagePropertyName = ${Configuration.setting('UpAssist.Neos.RSSFeed.imagePropertyName')}
+        mainContentCollection = ${Configuration.setting('UpAssist.Neos.RSSFeed.mainContentCollection')}
+        textAppendix = ${Configuration.setting('UpAssist.Neos.RSSFeed.textAppendix')}
+
+        renderer = afx`
+            <item>
+                <UpAssist.Neos.RSSFeed:Helper.CDataHelper content={node.properties.title}
+                                                          @process.wrap={'<title>' + value + '</title>'}/>
+                <Neos.Neos:NodeUri node={node} absolute={'true'} @process.wrap={'<link>' + value + '</link>'}/>
+                <Neos.Neos:NodeUri node={node} absolute={'true'} @process.wrap={'<guid>' + value + '</guid>'}/>
+                <pubDate>{Date.format(node.lastPublicationDateTime, 'D, d M Y H:i:s O')}</pubDate>
+                <UpAssist.Neos.RSSFeed:Helper.CDataHelper content={props.author}
+                                                          @process.wrap={'<dc:creator>' + value + '</dc:creator>'}/>
+                <UpAssist.Neos.RSSFeed:Helper.CDataHelper @process.wrap={'<description>' + value + '</description>'}>
+                    {String.crop(String.stripTags(q(node).find(props.mainContentCollection).find(Array.join(itemContentNodeType)).first().property(props.contentPropertyName)), props.numberOfCharacters, props.textAppendix)}
+                </UpAssist.Neos.RSSFeed:Helper.CDataHelper>
+                <UpAssist.Neos.RSSFeed:Component.Molecule.Enclosure image={q(node).property(props.imagePropertyName)} />
+            </item>
+        `
+    }
+
+}
