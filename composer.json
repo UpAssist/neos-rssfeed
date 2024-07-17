@@ -5,6 +5,7 @@
     "require": {
         "neos/flow": "*"
     },
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "UpAssist\\Neos\\RSSFeed\\": "Classes/"
