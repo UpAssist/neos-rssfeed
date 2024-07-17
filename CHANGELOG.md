@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.2](https://github.com/UpAssist/neos-rssfeeed/compare/0.2.1...0.2.2) (2024-07-17)
+
+
+### Features
+
+* support for older neos versions ([26d4fb4](https://github.com/UpAssist/neos-rssfeeed/commit/26d4fb4ead4073e88651332cbdc14e7fa0d82fcd))
+
 ## [0.2.0](https://github.com/UpAssist/neos-rssfeeed/compare/0.1.2...0.2.0) (2024-03-08)
 
 
