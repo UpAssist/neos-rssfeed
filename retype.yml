@@ -1,0 +1,8 @@
+input: ./Documentation
+output: ./Resources/Public/docs
+url: localhost
+branding:
+  title: RSS Feed
+  label: Docs
+footer:
+  copyright: "&copy; Copyright {{ year }}. All rights reserved."
