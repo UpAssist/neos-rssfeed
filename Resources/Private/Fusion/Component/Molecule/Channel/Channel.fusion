@@ -24,7 +24,7 @@ prototype(UpAssist.Neos.RSSFeed:Component.Molecule.Channel) < prototype(Neos.Fus
         absolute = true
         @process.wrap = ${'<link>' + value + '</link>'}
     }
-    language = ${Array.first(node.context.dimensions.language)}
+    language = ${node.context.dimensions.language && Array.length(node.context.dimensions.language) ? Array.first(node.context.dimensions.language) : Configuration.setting('UpAssist.Neos.RSSFeed.defaultLanguage')}
     feedUri = Neos.Neos:NodeUri {
         node = ${documentNode}
         absolute = true

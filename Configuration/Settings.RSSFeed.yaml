@@ -19,3 +19,5 @@ UpAssist:
       mainContentCollection: 'main'
       # When trimming text, append this
       textAppendix: '...'
+      # When no dimensions are used, use this language
+      defaultLanguage: 'en'
