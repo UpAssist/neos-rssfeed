@@ -8,9 +8,11 @@ prototype(UpAssist.Neos.RSSFeed:Component.Molecule.Item) < prototype(Neos.Fusion
     @private {
         contentPropertyName = ${Configuration.setting('UpAssist.Neos.RSSFeed.contentPropertyName')}
         imagePropertyName = ${Configuration.setting('UpAssist.Neos.RSSFeed.imagePropertyName')}
+        categoryPropertyName = ${Configuration.setting('UpAssist.Neos.RSSFeed.categoryPropertyName')}
         mainContentCollection = ${Configuration.setting('UpAssist.Neos.RSSFeed.mainContentCollection')}
         textAppendix = ${Configuration.setting('UpAssist.Neos.RSSFeed.textAppendix')}
     }
+
     renderer = afx`
         <item>
             <UpAssist.Neos.RSSFeed:Helper.CDataHelper content={node.properties.title}
@@ -24,6 +26,12 @@ prototype(UpAssist.Neos.RSSFeed:Component.Molecule.Item) < prototype(Neos.Fusion
                 {String.crop(String.stripTags(q(node).find(private.mainContentCollection).find(Array.join(itemContentNodeType)).first().property(private.contentPropertyName)), props.numberOfCharacters, private.textAppendix)}
             </UpAssist.Neos.RSSFeed:Helper.CDataHelper>
             <UpAssist.Neos.RSSFeed:Component.Molecule.Enclosure image={q(node).property(private.imagePropertyName)} />
+          <Neos.Fusion:Loop items={q(node).property(private.categoryPropertyName)} @if={private.categoryPropertyName && Type.isArray(q(node).property(private.categoryPropertyName))}>
+            <UpAssist.Neos.RSSFeed:Helper.CDataHelper @process.wrap={'<category>' + value + '</category>'}>{item.label}</UpAssist.Neos.RSSFeed:Helper.CDataHelper>
+          </Neos.Fusion:Loop>
+          <UpAssist.Neos.RSSFeed:Helper.CDataHelper @process.wrap={'<category>' + value + '</category>'}  @if={private.categoryPropertyName && Type.isString(q(node).property(private.categoryPropertyName))}>
+            {q(node).property(private.categoryPropertyName)}
+          </UpAssist.Neos.RSSFeed:Helper.CDataHelper>
         </item>
     `
 }

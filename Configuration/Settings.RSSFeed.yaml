@@ -15,6 +15,8 @@ UpAssist:
       contentPropertyName: 'text'
       # The property used to fetch images from
       imagePropertyName: 'image'
+      # The property if a category must be used. Supports single string value or references
+      categoryPropertyName: null
       # The name of the main content collection (where we look for text elements to show)
       mainContentCollection: 'main'
       # When trimming text, append this
