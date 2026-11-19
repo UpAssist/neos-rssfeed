@@ -1,17 +1,35 @@
 # Neos RSS Feed
 
-A simple package to create news feeds.
+A simple package to create news feeds: add an RSS feed document to your tree and pick, in the inspector, which documents and which content it lists.
 
 ## Compatibility
 
-| Version | Neos | Notes |
-| --- | --- | --- |
-| 0.3.x | 8.3, 8.4 | Tested on 8.3 and 8.4. Neos 9 is not supported: the data sources and Fusion use the Neos 8 Content Repository API. |
+| Version | Neos | Branch | Notes |
+| --- | --- | --- | --- |
+| 1.x | 9.0, 9.1, 9.2 | `main` | Tested on 9.0, 9.1 and 9.2. |
+| 0.4.x | 8.3, 8.4 | `0.x` | Tested on 8.3 and 8.4. Bug fixes only. |
+| 0.3.x | 8.3, 8.4 | | |
+
+The data sources and Fusion talk to the Content Repository, whose API differs between Neos 8 and 9, so each Neos major has its own package major.
 
 ## Installation
 
-```composer require upassist/neos-rssfeed```
+```bash
+composer require upassist/neos-rssfeed
+```
 
 ## Configuration
 
-Take a look at the settings file for details.
+All settings live under `UpAssist.Neos.RSSFeed`; see `Configuration/Settings.RSSFeed.yaml` for the defaults.
+
+| Setting | Default | Purpose |
+| --- | --- | --- |
+| `allowedDocumentTypes` | `Neos.Neos:Document` | Document types (or mixins) the editor can pick as feed items. |
+| `allowedContentTypes` | `Neos.NodeTypes.BaseMixins:TextMixin` | Content types (or mixins) the item description is taken from. |
+| `sortPropertyName` | `publicationDate` | Property the items are sorted by, newest first. `null` keeps the document tree order. On Neos 8, `_lastPublicationDateTime` sorts by publication time. |
+| `contentPropertyName` | `text` | Property of the content node that holds the description text. |
+| `imagePropertyName` | `image` | Document property used for the item enclosure. |
+| `categoryPropertyName` | `null` | Document property (string or references) rendered as `<category>`. |
+| `mainContentCollection` | `main` | Content collection searched for the description. |
+| `textAppendix` | `...` | Appended when the description is cropped. |
+| `defaultLanguage` | `en` | Channel language when the site has no `language` dimension. |
