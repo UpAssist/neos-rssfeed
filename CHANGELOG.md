@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1](https://github.com/UpAssist/neos-rssfeed/compare/0.3.0...0.3.1) (2026-11-19)
+
+
+### Bug Fixes
+
+* require neos/neos ^8.3 and neos/fusion-afx instead of neos/flow * ([6e83d50](https://github.com/UpAssist/neos-rssfeed/commit/6e83d50)). Neos 9 is not supported: the data sources and Fusion use the Neos 8 Content Repository API.
+
 ## [0.3.0](https://github.com/UpAssist/neos-rssfeeed/compare/0.2.3...0.3.0) (2025-04-08)
 
 
