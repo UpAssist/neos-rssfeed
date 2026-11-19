@@ -1,9 +1,10 @@
 {
-    "description": "",
+    "description": "RSS 2.0 feed document node type for Neos CMS",
     "type": "neos-package",
     "name": "upassist/neos-rssfeed",
     "require": {
-        "neos/flow": "*"
+        "neos/neos": "^8.3",
+        "neos/fusion-afx": "^8.3"
     },
     "license": "MIT",
     "autoload": {

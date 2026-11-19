@@ -12,12 +12,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/UpAssist/neos-rssfeeed.git"
+    "url": "git+https://github.com/UpAssist/neos-rssfeed.git"
   },
   "author": "Henjo Hoeksma <henjo@upassist.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/UpAssist/neos-rssfeeed/issues"
+    "url": "https://github.com/UpAssist/neos-rssfeed/issues"
   },
-  "homepage": "https://github.com/UpAssist/neos-rssfeeed#readme"
+  "homepage": "https://github.com/UpAssist/neos-rssfeed#readme"
 }
