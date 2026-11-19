@@ -26,7 +26,7 @@ All settings live under `UpAssist.Neos.RSSFeed`; see `Configuration/Settings.RSS
 | --- | --- | --- |
 | `allowedDocumentTypes` | `Neos.Neos:Document` | Document types (or mixins) the editor can pick as feed items. |
 | `allowedContentTypes` | `Neos.NodeTypes.BaseMixins:TextMixin` | Content types (or mixins) the item description is taken from. |
-| `sortPropertyName` | `publicationDate` | Property the items are sorted by, newest first. `null` keeps the document tree order. On Neos 8, `_lastPublicationDateTime` sorts by publication time. |
+| `sortPropertyName` | `publicationDate` | Property the items are sorted by, newest first. `null` keeps the document tree order. On Neos 8 (0.x), `_lastPublicationDateTime` sorts by publication time; Neos 9 sorts by node properties only. |
 | `contentPropertyName` | `text` | Property of the content node that holds the description text. |
 | `imagePropertyName` | `image` | Document property used for the item enclosure. |
 | `categoryPropertyName` | `null` | Document property (string or references) rendered as `<category>`. |

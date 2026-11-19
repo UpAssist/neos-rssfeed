@@ -15,11 +15,11 @@ prototype(UpAssist.Neos.RSSFeed:Component.Molecule.Item.Legacy) < prototype(Neos
 
         renderer = afx`
             <item>
-                <UpAssist.Neos.RSSFeed:Helper.CDataHelper content={node.properties.title}
+                <UpAssist.Neos.RSSFeed:Helper.CDataHelper content={q(node).property('title')}
                                                           @process.wrap={'<title>' + value + '</title>'}/>
                 <Neos.Neos:NodeUri node={node} absolute={'true'} @process.wrap={'<link>' + value + '</link>'}/>
                 <Neos.Neos:NodeUri node={node} absolute={'true'} @process.wrap={'<guid>' + value + '</guid>'}/>
-                <pubDate>{Date.format(node.lastPublicationDateTime, 'D, d M Y H:i:s O')}</pubDate>
+                <pubDate>{Date.format(node.timestamps.lastModified || node.timestamps.created, 'D, d M Y H:i:s O')}</pubDate>
                 <UpAssist.Neos.RSSFeed:Helper.CDataHelper content={props.author}
                                                           @process.wrap={'<dc:creator>' + value + '</dc:creator>'}/>
                 <UpAssist.Neos.RSSFeed:Helper.CDataHelper @process.wrap={'<description>' + value + '</description>'}>
@@ -27,7 +27,7 @@ prototype(UpAssist.Neos.RSSFeed:Component.Molecule.Item.Legacy) < prototype(Neos
                 </UpAssist.Neos.RSSFeed:Helper.CDataHelper>
                 <UpAssist.Neos.RSSFeed:Component.Molecule.Enclosure image={q(node).property(props.imagePropertyName)} />
                 <Neos.Fusion:Loop items={q(node).property(props.categoryPropertyName)} @if={props.categoryPropertyName && Type.isArray(q(node).property(props.categoryPropertyName))}>
-                  <UpAssist.Neos.RSSFeed:Helper.CDataHelper @process.wrap={'<category>' + value + '</category>'}>{item.label}</UpAssist.Neos.RSSFeed:Helper.CDataHelper>
+                  <UpAssist.Neos.RSSFeed:Helper.CDataHelper @process.wrap={'<category>' + value + '</category>'}>{Neos.Node.label(item)}</UpAssist.Neos.RSSFeed:Helper.CDataHelper>
                 </Neos.Fusion:Loop>
                 <UpAssist.Neos.RSSFeed:Helper.CDataHelper @process.wrap={'<category>' + value + '</category>'}  @if={props.categoryPropertyName && Type.isString(q(node).property(props.categoryPropertyName))}>
                   {q(node).property(props.categoryPropertyName)}
