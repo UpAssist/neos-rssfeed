@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/UpAssist/neos-rssfeed/compare/0.3.1...0.4.0) (2026-11-19)
+
+Neos 8 line (branch `0.x`). Neos 9 support continues in 1.x on `main`.
+
+### Features
+
+* `sortPropertyName` setting: the property the feed items are sorted by (default `publicationDate`, as before; `null` keeps the tree order)
+
+### Bug Fixes
+
+* default `allowedContentTypes` now points to `Neos.NodeTypes.BaseMixins:TextMixin`; `Neos.Neos:Mixin.TextMixin` does not exist, so the content type select was empty by default
+
 ### [0.3.1](https://github.com/UpAssist/neos-rssfeed/compare/0.3.0...0.3.1) (2026-11-19)
 
 
