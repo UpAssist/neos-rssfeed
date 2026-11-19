@@ -19,7 +19,7 @@ prototype(UpAssist.Neos.RSSFeed:Component.Template.RssFeed) < prototype(Neos.Fus
   # Rendering
   renderer = Neos.Fusion:Case {
       neos {
-        condition = ${node.context.inBackend}
+        condition = ${renderingMode.isEdit || renderingMode.isPreview}
         renderer = Neos.Neos:Page {
           body = afx`
             <main>

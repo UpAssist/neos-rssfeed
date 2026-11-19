@@ -2,58 +2,23 @@
 
 namespace UpAssist\Neos\RSSFeed\DataSource;
 
-use Neos\ContentRepository\Domain\Model\NodeInterface;
-use Neos\ContentRepository\Domain\Service\NodeTypeManager;
-use Neos\Neos\Service\DataSource\AbstractDataSource;
 use Neos\Flow\Annotations as Flow;
 
-class RSSDocumentTypesDataSource extends AbstractDataSource
+class RSSDocumentTypesDataSource extends AbstractNodeTypesDataSource
 {
-    /**
-     * @var array
-     * @Flow\InjectConfiguration(path="allowedDocumentTypes", package="UpAssist.Neos.RSSFeed")
-     */
-    protected $allowedTypes;
-
-    /**
-     * @var NodeTypeManager
-     * @Flow\Inject
-     */
-    protected $nodeTypeManager;
-
     /**
      * @var string
      */
-    static protected $identifier = 'rss-documenttypes';
+    protected static $identifier = 'rss-documenttypes';
 
     /**
-     * @inheritDoc
+     * @var array<string>|null
      */
-    public function getData(NodeInterface $node = null, array $arguments = [])
+    #[Flow\InjectConfiguration(path: 'allowedDocumentTypes', package: 'UpAssist.Neos.RSSFeed')]
+    protected $allowedTypes;
+
+    protected function getAllowedTypes(): array
     {
-        $nodeTypes = [];
-
-        if (empty($this->allowedTypes)) return $nodeTypes;
-
-        foreach ($this->nodeTypeManager->getNodeTypes() as $nodeType) {
-            if (in_array($nodeType->getName(), $this->allowedTypes)) {
-                if ($nodeType->isAbstract()) {
-                    $subNodeTypes = $this->nodeTypeManager->getSubNodeTypes($nodeType->getName());
-                    foreach ($subNodeTypes as $subNodeType) {
-                        $nodeTypes[] = [
-                            'value' => $subNodeType->getName(),
-                            'label' => $subNodeType->getLabel()
-                        ];
-                    }
-                } else {
-                    $nodeTypes[] = [
-                        'value' => $nodeType->getName(),
-                        'label' => $nodeType->getLabel()
-                    ];
-                }
-            }
-        }
-
-        return $nodeTypes;
+        return array_values($this->allowedTypes ?? []);
     }
 }

@@ -3,8 +3,10 @@
     "type": "neos-package",
     "name": "upassist/neos-rssfeed",
     "require": {
-        "neos/neos": "^8.3",
-        "neos/fusion-afx": "^8.3"
+        "neos/neos": "^9.0",
+        "neos/fusion-afx": "^9.0",
+        "neos/contentrepository-core": "^9.0",
+        "neos/contentrepositoryregistry": "^9.0"
     },
     "license": "MIT",
     "autoload": {

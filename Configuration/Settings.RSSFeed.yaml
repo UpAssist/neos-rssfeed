@@ -12,7 +12,6 @@ UpAssist:
       allowedContentTypes:
         - 'Neos.NodeTypes.BaseMixins:TextMixin'
       # The property the feed items are sorted by (newest first). Set to null to keep the document tree order.
-      # On Neos 8 '_lastPublicationDateTime' sorts by the time a document was last published.
       sortPropertyName: 'publicationDate'
       # The property used to fetch text from
       contentPropertyName: 'text'
