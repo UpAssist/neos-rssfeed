@@ -1,0 +1,21 @@
+# Dependabot only reads this file from the default branch; the second entry covers the Neos 8 line (0.x).
+# The package has no Composer or npm dependencies to update, so only the GitHub Actions are tracked.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 5
+    groups:
+      actions-minor-patch:
+        update-types: [minor, patch]
+  - package-ecosystem: github-actions
+    directory: /
+    target-branch: 0.x
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 5
+    groups:
+      actions-minor-patch:
+        update-types: [minor, patch]
