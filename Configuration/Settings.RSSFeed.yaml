@@ -10,7 +10,10 @@ UpAssist:
       # Set this where you want the editor to be able to select the content nodes from (for use in the body).
       # You can use a mixin, all types containing the mixin will then be available.
       allowedContentTypes:
-        - 'Neos.Neos:Mixin.TextMixin'
+        - 'Neos.NodeTypes.BaseMixins:TextMixin'
+      # The property the feed items are sorted by (newest first). Set to null to keep the document tree order.
+      # On Neos 8 '_lastPublicationDateTime' sorts by the time a document was last published.
+      sortPropertyName: 'publicationDate'
       # The property used to fetch text from
       contentPropertyName: 'text'
       # The property used to fetch images from
