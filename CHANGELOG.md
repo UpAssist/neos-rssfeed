@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/UpAssist/neos-rssfeed/compare/1.0.0...1.0.1) (2026-11-23)
+
+### Bug Fixes
+
+* render an empty feed when no item node type is set: a new RSS feed page without a document type gave a 500 in the frontend
+
 ## [1.0.0](https://github.com/UpAssist/neos-rssfeed/compare/0.3.1...1.0.0) (2026-11-19)
 
 Neos 9 support. Neos 8 stays on the 0.x line (branch `0.x`, 0.4.x).
