@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.2](https://github.com/UpAssist/neos-rssfeed/compare/0.4.1...0.4.2) (2026-11-23)
+
+### Bug Fixes
+
+* render an empty feed when no item node type is set: a new RSS feed page without a document type gave a 500 in the frontend
+
 ### [0.4.1](https://github.com/UpAssist/neos-rssfeed/compare/0.4.0...0.4.1) (2026-11-19)
 
 Re-release of 0.4.0. The 0.4.0 tag was set on the 0.3.1 commit by mistake, so installing 0.4.0 gives the 0.3.1 code. 0.4.1 contains the changes listed under 0.4.0 below; use 0.4.1.
