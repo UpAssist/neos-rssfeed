@@ -33,7 +33,7 @@ prototype(UpAssist.Neos.RSSFeed:Component.Molecule.Channel) < prototype(Neos.Fus
         items = ${props.itemContentNodeType}
         itemRenderer = ${'[instanceof ' + item + ']'}
     }
-    items = ${Configuration.setting('UpAssist.Neos.RSSFeed.sortPropertyName')
+    items = ${!props.itemNodeType ? [] : Configuration.setting('UpAssist.Neos.RSSFeed.sortPropertyName')
         ? q(props.indexPage ? props.indexPage : site).find('[instanceof ' + props.itemNodeType + ']').sort(Configuration.setting('UpAssist.Neos.RSSFeed.sortPropertyName'), 'DESC').slice(0, props.numberOfItems)
         : q(props.indexPage ? props.indexPage : site).find('[instanceof ' + props.itemNodeType + ']').slice(0, props.numberOfItems)}
 
